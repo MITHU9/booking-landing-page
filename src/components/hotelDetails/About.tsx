@@ -148,7 +148,7 @@ const About = (): JSX.Element => {
             <Image
               className="w-full h-[204.78px] object-cover"
               alt="Map of Bab el Oued, Algiers"
-              src="/---map-maker--bab-el-oued--algiers--algeria--standard-.png"
+              src="/images/map.png"
               width={555}
               height={205}
             />
