@@ -1,48 +1,95 @@
+"use client";
+
 import Image from "next/image";
 import { JSX } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css"; // Swiper base styles
 
-const ImageGallery = (): JSX.Element => (
-  <div className="flex flex-col items-start gap-1 w-full rounded-[14px]">
-    <div className="flex items-start gap-1 w-full">
-      <Image
-        className="w-[768px] h-[306px] object-cover rounded-tl-md"
-        alt="Main view"
-        src="/images/image-8.jpg"
-        width={768}
-        height={306}
-      />
-      <div className="flex flex-col gap-1 flex-1">
-        <Image
-          className="h-[151px] object-cover rounded-tr-md"
-          alt="view1"
-          src="/images/image-11.jpg"
-          width={510}
-          height={151}
-        />
-        <Image
-          className="h-[151px] object-cover"
-          alt="view2"
-          src="/images/image-10.jpg"
-          width={510}
-          height={151}
-        />
+const ImageGallery = (): JSX.Element => {
+  return (
+    <div className="flex flex-col gap-1 w-full rounded-[14px]">
+      {/* Mobile */}
+      <div className="block md:hidden">
+        <Swiper
+          modules={[Autoplay]}
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          loop
+          className="rounded-md overflow-hidden"
+        >
+          {[
+            "/images/image-8.jpg",
+            "/images/image-11.jpg",
+            "/images/image-10.jpg",
+          ].map((src, index) => (
+            <SwiperSlide key={index}>
+              <div className="relative aspect-[2.5/1] w-full">
+                <Image
+                  src={src}
+                  alt={`slide-${index}`}
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      <div className="hidden md:flex gap-1 w-full">
+        {/* Main Image */}
+        <div className="w-2/3 relative aspect-[2.5/1] overflow-hidden rounded-tl-md">
+          <Image
+            src="/images/image-8.jpg"
+            alt="Main view"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        {/* Side Images */}
+        <div className="flex flex-col gap-1 w-1/3">
+          <div className="relative aspect-[2.5/1] overflow-hidden rounded-tr-md">
+            <Image
+              src="/images/image-11.jpg"
+              alt="view1"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative aspect-[2.5/1] overflow-hidden">
+            <Image
+              src="/images/image-10.jpg"
+              alt="view2"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Grid*/}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-1 w-full mt-2">
+        {Array(6)
+          .fill(0)
+          .map((_, i) => (
+            <div
+              key={i}
+              className="relative aspect-[3/2] overflow-hidden rounded-sm"
+            >
+              <Image
+                src={`/images/image-${i + 1}.jpg`}
+                alt={`view-${i}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 16vw"
+              />
+            </div>
+          ))}
       </div>
     </div>
-    <div className="flex gap-1 w-full">
-      {Array(6)
-        .fill(0)
-        .map((_, i) => (
-          <Image
-            key={i}
-            className="flex-1 h-[151px] object-cover"
-            alt={`view-${i}`}
-            src={`/images/image-${i + 1}.jpg`}
-            width={200}
-            height={151}
-          />
-        ))}
-    </div>
-  </div>
-);
+  );
+};
 
 export default ImageGallery;

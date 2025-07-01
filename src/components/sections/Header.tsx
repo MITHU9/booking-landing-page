@@ -1,4 +1,5 @@
-import React, { JSX } from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -8,9 +9,25 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import {
+  ArrowUpRight,
+  BadgeCent,
+  ChevronDown,
+  MessageCircle,
+  User,
+  Menu,
+  X,
+} from "lucide-react";
 
-export const Header = (): JSX.Element => {
-  const navItems = [
+interface NavItem {
+  label: string;
+  active: boolean;
+}
+
+export const Header: React.FC = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+  const navItems: NavItem[] = [
     { label: "Home", active: true },
     { label: "Hotels", active: false },
     { label: "House", active: false },
@@ -19,128 +36,134 @@ export const Header = (): JSX.Element => {
   ];
 
   return (
-    <header className="relative w-full h-[76px] bg-[#e9f6ff] rounded-[42px_42px_0px_0px]">
-      <div className="flex h-full items-center justify-between px-[83px] max-w-[1270px] mx-auto">
-        <div className="flex items-center gap-[30px]">
+    <header className="relative w-full bg-[#e9f6ff] rounded-t-[42px]">
+      <div className="flex items-center justify-between h-[76px] px-4 md:px-10 lg:px-2 max-w-[1280px] mx-auto">
+        <div className="flex items-center justify-between w-full lg:w-auto">
           <Image
             className="w-[90px] h-[29.23px]"
             alt="Logo"
             src="/images/logo.png"
             width={90}
             height={29}
+            priority
           />
 
-          <NavigationMenu>
-            <NavigationMenuList className="flex items-center gap-[18px]">
-              {navItems.map((item, index) => (
-                <NavigationMenuItem key={index}>
-                  <NavigationMenuLink
-                    className={`font-['DM_Sans',Helvetica] text-base leading-normal ${
-                      item.active
-                        ? "font-bold text-[#007ccf]"
-                        : "font-normal text-[#626262]"
-                    }`}
-                  >
-                    {item.label}
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
+          <button
+            className="lg:hidden ml-auto"
+            aria-label="Toggle Menu"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
 
-        <div className="flex items-center gap-[5px]">
+        {/* Navigation (Desktop) */}
+        <NavigationMenu className="hidden lg:block">
+          <NavigationMenuList className="flex items-center gap-6">
+            {navItems.map((item) => (
+              <NavigationMenuItem key={item.label}>
+                <NavigationMenuLink
+                  className={`font-['DM_Sans'] text-base leading-normal ${
+                    item.active
+                      ? "font-bold text-[#007ccf]"
+                      : "font-normal text-[#626262]"
+                  }`}
+                >
+                  {item.label}
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        {/* Controls (Desktop) */}
+        <div className="hidden lg:flex items-center gap-2">
           <Button
             variant="outline"
-            className="h-[41px] w-[83px] rounded-[46px] border-[#a5d3f1] bg-transparent flex items-center justify-center gap-2 px-3 py-2"
+            className="h-[41px] rounded-full border-[#a5d3f1] bg-transparent px-3 py-2 gap-2"
           >
-            <Image
-              className="w-6 h-6"
-              alt="Euro circle"
-              src="/euro-circle.svg"
-              width={24}
-              height={24}
-            />
-            <Image
-              className="w-6 h-6"
-              alt="Arrow down"
-              src="/vuesax-outline-arrow-down-3.svg"
-              width={24}
-              height={24}
-            />
+            <BadgeCent />
+            <ChevronDown className="text-[#007dd0]" />
           </Button>
 
           <Button
             variant="outline"
-            className="h-[41px] w-[83px] rounded-[46px] border-[#a5d3f1] bg-transparent flex items-center justify-center gap-2 px-3 py-2"
+            className="h-[41px] rounded-full border-[#a5d3f1] bg-transparent px-3 py-2 gap-2"
           >
-            <Avatar className="w-[31px] h-[31px] rounded-[145px] overflow-hidden">
-              <AvatarImage
-                src="/image-1.png"
-                alt="User avatar"
-                className="object-cover"
-              />
+            <Avatar className="w-[31px] h-[31px]">
+              <AvatarImage src="/images/flag.png" alt="Flag" />
             </Avatar>
-            <Image
-              className="w-6 h-6"
-              alt="Arrow down"
-              src="/vuesax-outline-arrow-down-3.svg"
-              width={24}
-              height={24}
-            />
+            <ChevronDown className="text-[#007dd0]" />
           </Button>
 
           <Button
             variant="outline"
-            className="h-[41px] rounded-[46px] border-[#a5d3f1] bg-transparent flex items-center justify-center gap-2 px-3 py-2"
+            className="h-[41px] rounded-full border-[#a5d3f1] bg-transparent px-3 py-2 gap-2"
           >
-            <span className="font-['DM_Sans',Helvetica] font-normal text-[#007dd0] text-base">
+            <span className="font-['DM_Sans'] text-[#007dd0] text-base">
               List your property
             </span>
-            <Image
-              className="w-6 h-6"
-              alt="Arrow up right"
-              src="/arrow-up-right-01-round.svg"
-              width={24}
-              height={24}
-            />
+            <ArrowUpRight className="text-[#007dd0]" />
           </Button>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Button
               variant="ghost"
-              className="w-[42px] h-[42px] p-2 bg-[#ffffff80] rounded-[28px] flex items-center justify-center"
+              className="w-[42px] h-[42px] p-2 bg-[#ffffff80] rounded-full"
             >
-              <Image
-                className="w-6 h-6"
-                alt="Notification"
-                src="/notification-bubble.svg"
-                width={24}
-                height={24}
-              />
+              <MessageCircle className="text-[#007dd0]" />
             </Button>
 
             <Button
               variant="ghost"
-              className="h-[42px] px-3 py-0 bg-[#ffffff80] rounded-[26px] flex items-center justify-center gap-1.5"
+              className="h-[42px] px-3 bg-[#ffffff80] rounded-full flex items-center gap-2"
             >
-              <div className="relative w-[26px] h-[26px]">
-                <Image
-                  className="absolute w-[18px] h-1.5 top-[17px] left-1"
-                  alt="Ellipse"
-                  src="/ellipse-45-6.svg"
-                  width={18}
-                  height={6}
-                />
-                <div className="absolute w-2.5 h-2.5 top-1 left-2 rounded-[5.08px] border-[1.5px] border-solid border-[#007dd0]" />
-              </div>
-              <span className="font-['DM_Sans',Helvetica] font-normal text-[#007dd0] text-base">
+              <User className="text-[#007dd0]" />
+              <span className="text-[#007dd0] font-['DM_Sans'] text-base">
                 Sunan
               </span>
             </Button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden px-4 pb-4 bg-[#e9f6ff] space-y-3">
+          {navItems.map((item) => (
+            <div
+              key={item.label}
+              className={`text-base font-['DM_Sans'] ${
+                item.active ? "font-bold text-[#007ccf]" : "text-[#626262]"
+              }`}
+            >
+              {item.label}
+            </div>
+          ))}
+
+          <div className="pt-2 flex flex-col gap-2">
+            <Button variant="outline" className="w-full">
+              List your property
+            </Button>
+            <Button variant="outline" className="w-full flex justify-between">
+              <span>Currency</span>
+              <ChevronDown className="text-[#007dd0]" />
+            </Button>
+            <Button variant="outline" className="w-full flex justify-between">
+              <span>Language</span>
+              <ChevronDown className="text-[#007dd0]" />
+            </Button>
+            <div className="flex gap-2">
+              <Button className="flex-1" variant="ghost">
+                <MessageCircle className="text-[#007dd0]" />
+              </Button>
+              <Button className="flex-1" variant="ghost">
+                <User className="text-[#007dd0]" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
