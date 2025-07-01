@@ -3,7 +3,7 @@ import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import { Separator } from "@radix-ui/react-separator";
 import { Button } from "../ui/button";
-import { InfoIcon } from "lucide-react";
+import { Bath, BedSingle, InfoIcon, Maximize2, StarIcon } from "lucide-react";
 
 const RoomCard = (): JSX.Element => {
   const similarProperties = Array(8).fill({
@@ -41,18 +41,12 @@ const RoomCard = (): JSX.Element => {
                           <Image
                             className="w-[326px] h-[243px]"
                             alt="Property"
-                            src="/rectangle-3.svg"
+                            src="/images/image-2.jpg"
                             width={326}
                             height={243}
                           />
                           <div className="flex items-center gap-0.5 px-4 py-[15px] mt-[-52px] bg-[#0000001a] rounded-[0px_33px_0px_29px]">
-                            <Image
-                              className="w-[21.3px] h-[20.26px]"
-                              alt="Star"
-                              src="/star-8.svg"
-                              width={21}
-                              height={20}
-                            />
+                            <StarIcon className="text-[#FFD700] fill-[#FFD700] size-5" />
                             <span className="w-[21px] font-medium text-white text-sm font-['DM_Sans',Helvetica]">
                               4.5
                             </span>
@@ -74,13 +68,7 @@ const RoomCard = (): JSX.Element => {
                           </div>
                           <div className="flex items-center justify-between w-[326px] px-[7px]">
                             <div className="flex items-center gap-1">
-                              <Image
-                                className="w-[20.5px] h-[20.5px]"
-                                alt="Bedroom"
-                                src="/door-2.svg"
-                                width={21}
-                                height={21}
-                              />
+                              <BedSingle className="size-4" />
                               <div className="flex items-end gap-1">
                                 <span className="font-normal text-[#252525] text-sm font-['DM_Sans',Helvetica]">
                                   {property.bedrooms}
@@ -95,13 +83,7 @@ const RoomCard = (): JSX.Element => {
                               className="h-2.5"
                             />
                             <div className="flex items-center gap-1">
-                              <Image
-                                className="w-5 h-5"
-                                alt="Bathroom"
-                                src="/bathtub-01-3.svg"
-                                width={20}
-                                height={20}
-                              />
+                              <Bath className="size-4" />
                               <div className="flex items-end gap-1">
                                 <span className="font-normal text-[#252525] text-sm font-['DM_Sans',Helvetica]">
                                   {property.bathrooms}
@@ -116,13 +98,7 @@ const RoomCard = (): JSX.Element => {
                               className="h-2.5"
                             />
                             <div className="flex items-center gap-1">
-                              <Image
-                                className="w-5 h-5"
-                                alt="Size"
-                                src="/full-screen-corner-light.svg"
-                                width={20}
-                                height={20}
-                              />
+                              <Maximize2 className="size-4" />
                               <div className="flex items-end gap-1">
                                 <span className="font-normal text-[#252525] text-sm font-['DM_Sans',Helvetica]">
                                   {property.size}
@@ -142,7 +118,7 @@ const RoomCard = (): JSX.Element => {
                             </span>
                           </Button>
                           <div className="flex w-[46px] h-[46px] items-center p-[11px] bg-[#007dd01a] rounded-[35px]">
-                            <InfoIcon className="flex-1 h-6" />
+                            <InfoIcon className="flex-1 h-6 text-[#007ccf]" />
                           </div>
                         </div>
                       </CardContent>

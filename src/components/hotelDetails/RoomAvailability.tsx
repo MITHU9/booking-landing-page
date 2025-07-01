@@ -2,6 +2,17 @@ import { Separator } from "@radix-ui/react-separator";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { JSX } from "react";
+import {
+  Bath,
+  BedSingle,
+  ChevronDown,
+  Hotel,
+  Maximize2,
+  Monitor,
+  User,
+  Wifi,
+  Wind,
+} from "lucide-react";
 
 const roomTypes = [
   {
@@ -75,43 +86,19 @@ const RoomAvailability = (): JSX.Element => {
                   <span className="font-bold">2 </span>
                   <span>single beds</span>
                 </span>
-                <Image
-                  className="w-[18px] h-[18px]"
-                  alt="Bed icon"
-                  src="/bed-single-01.svg"
-                  width={18}
-                  height={18}
-                />
-                <Image
-                  className="w-[18px] h-[18px]"
-                  alt="Bed icon"
-                  src="/bed-single-01.svg"
-                  width={18}
-                  height={18}
-                />
+                <BedSingle className="size-4" />
+                <BedSingle className="size-4" />
               </div>
 
               <div className="flex items-center gap-[21.75px]">
                 <div className="flex items-center gap-1.5">
-                  <Image
-                    className="w-[18px] h-[18px]"
-                    alt="Door icon"
-                    src="/door.svg"
-                    width={18}
-                    height={18}
-                  />
+                  <Hotel className="size-4" />
                   <span className="font-normal text-[#252525] text-xs font-['DM_Sans',Helvetica]">
                     Room
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Image
-                    className="w-[18px] h-[18px]"
-                    alt="Size icon"
-                    src="/full-screen-corner-light.svg"
-                    width={18}
-                    height={18}
-                  />
+                  <Maximize2 className="size-4" />
                   <div className="flex items-end gap-[3px]">
                     <span className="font-normal text-[#252525] text-xs font-['DM_Sans',Helvetica]">
                       1,200
@@ -125,27 +112,13 @@ const RoomAvailability = (): JSX.Element => {
 
               <div className="flex items-end justify-between w-full">
                 <div className="flex items-center gap-1.5">
-                  <Image
-                    className="w-[18px] h-[18px]"
-                    alt="AC icon"
-                    src="/fast-wind.svg"
-                    width={18}
-                    height={18}
-                  />
+                  <Wind className="size-4" />
                   <span className="font-normal text-[#252525] text-xs font-['DM_Sans',Helvetica]">
                     Air condition
                   </span>
                 </div>
                 <div className="flex items-center gap-[3px]">
-                  <Image
-                    className="w-[15px] h-[15px]"
-                    alt="Bathroom icon"
-                    src={
-                      roomIndex === 0 ? "/bathtub-01-1.svg" : "/bathtub-01.svg"
-                    }
-                    width={15}
-                    height={15}
-                  />
+                  <Bath className="size-4" />
                   <span className="font-normal text-[#252525] text-xs font-['DM_Sans',Helvetica]">
                     Bathroom
                   </span>
@@ -154,25 +127,13 @@ const RoomAvailability = (): JSX.Element => {
 
               <div className="flex items-center justify-between w-[175.5px]">
                 <div className="flex items-center gap-[3px]">
-                  <Image
-                    className="w-[18px] h-[18px]"
-                    alt="TV icon"
-                    src="/presentation-01.svg"
-                    width={18}
-                    height={18}
-                  />
+                  <Monitor className="size-4" />
                   <span className="font-normal text-[#252525] text-xs font-['DM_Sans',Helvetica]">
                     TV
                   </span>
                 </div>
                 <div className="flex items-center gap-[3px]">
-                  <Image
-                    className="w-[18px] h-[18px]"
-                    alt="WiFi icon"
-                    src="/wifi-square.svg"
-                    width={18}
-                    height={18}
-                  />
+                  <Wifi className="size-4" />
                   <span className="font-normal text-[#252525] text-xs font-['DM_Sans',Helvetica]">
                     WIFI
                   </span>
@@ -187,13 +148,7 @@ const RoomAvailability = (): JSX.Element => {
           <div className="flex w-[174px] items-center gap-2 px-[5px]">
             {[0, 1].map((_, i) => (
               <div key={`guest-icon-${i}`} className="relative w-6 h-6">
-                <Image
-                  className="absolute w-[17px] h-1.5 top-[15px] left-[3px]"
-                  alt="Guest icon"
-                  src="/ellipse-45.svg"
-                  width={17}
-                  height={6}
-                />
+                <User />
                 <div className="absolute w-2.5 h-2.5 top-[3px] left-[7px] rounded-[5px] border-2 border-solid border-[#626262]" />
               </div>
             ))}
@@ -238,13 +193,7 @@ const RoomAvailability = (): JSX.Element => {
               <span className="font-normal text-[#626262] text-base font-['DM_Sans',Helvetica]">
                 0
               </span>
-              <Image
-                className="w-[21.36px] h-[21.36px]"
-                alt="Arrow down"
-                src="/vuesax-outline-arrow-down.svg"
-                width={21}
-                height={21}
-              />
+              <ChevronDown className="size-5" />
             </div>
           </div>
 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { JSX } from "react";
 import { Card, CardContent } from "../ui/card";
+import { ArrowRight, Star } from "lucide-react";
 
 const Reviews = (): JSX.Element => {
   const reviews = [
@@ -32,32 +33,14 @@ const Reviews = (): JSX.Element => {
           <div className="flex items-center justify-between px-[82px] w-full">
             <div className="flex items-center gap-3">
               <div className="flex w-[42px] h-[42px] items-center p-2.5 bg-[#c7c7c71a] rounded-[33px]">
-                <Image
-                  className="w-6 h-6"
-                  alt="Previous"
-                  src="/arrow-right-02-round-1.svg"
-                  width={24}
-                  height={24}
-                />
+                <ArrowRight className="-rotate-180" />
               </div>
-              <div className="flex w-[42px] h-[42px] items-center p-2.5 bg-[#007dd01a] rounded-[33px] rotate-180">
-                <Image
-                  className="w-6 h-6 -rotate-180"
-                  alt="Next"
-                  src="/arrow-right-02-round.svg"
-                  width={24}
-                  height={24}
-                />
+              <div className="flex w-[42px] h-[42px] items-center p-2.5 bg-[#007DD01A] rounded-[33px] text-[#007ccf]">
+                <ArrowRight />
               </div>
             </div>
             <div className="flex w-[135px] h-[42px] items-center justify-center gap-2.5 p-2.5 border-t border-[#007ccf] rotate-180">
-              <Image
-                className="w-6 h-6 -rotate-180"
-                alt="See all"
-                src="/arrow-right-02-round.svg"
-                width={24}
-                height={24}
-              />
+              <ArrowRight className="-rotate-180 text-[#007ccf]" />
               <span className="font-normal text-[#007dd0] text-xl -rotate-180 font-['DM_Sans',Helvetica]">
                 See All..
               </span>
@@ -89,13 +72,9 @@ const Reviews = (): JSX.Element => {
                           {Array(review.rating)
                             .fill(0)
                             .map((_, starIndex) => (
-                              <Image
+                              <Star
                                 key={`star-${index}-${starIndex}`}
-                                className="w-[23.78px] h-[22.61px]"
-                                alt="Star"
-                                src="/star-1.svg"
-                                width={24}
-                                height={23}
+                                className="text-[#FFD700] fill-[#FFD700] size-5"
                               />
                             ))}
                         </div>

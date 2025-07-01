@@ -1,34 +1,44 @@
-import React from "react";
+import React, { JSX } from "react";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
+import {
+  Facebook,
+  Github,
+  Instagram,
+  Mail,
+  MapPinned,
+  PhoneCall,
+  SquarePlay,
+  Twitter,
+} from "lucide-react";
 
 export const Footer = (): JSX.Element => {
   const navLinks = ["Home", "Hotels", "Deals", "About Us", "Contact Us"];
 
   const socialIcons = [
     {
-      url: "/group.png",
+      url: <Twitter className="size-4 text-white fill-white" />,
       width: "w-[15px]",
       height: "h-3",
-      top: "top-1",
+      top: "top-0",
       left: "left-0",
     },
     {
-      url: "/group-1.png",
+      url: <Facebook className="size-4 text-white fill-white" />,
       width: "w-2",
       height: "h-4",
-      top: "top-px",
+      top: "top-0",
       left: "left-[46px]",
     },
     {
-      url: "/group-2.png",
+      url: <Instagram className="size-4 text-white " />,
       width: "w-[18px]",
       height: "h-[18px]",
       top: "top-0",
       left: "left-[86px]",
     },
     {
-      url: "/group-3.png",
+      url: <Github className="size-4 text-white" />,
       width: "w-[17px]",
       height: "h-[17px]",
       top: "top-0",
@@ -37,14 +47,14 @@ export const Footer = (): JSX.Element => {
   ];
 
   return (
-    <footer className="flex items-center justify-center gap-[79px] py-[60px] relative w-full bg-[#00548c] rounded-[0px_0px_42px_42px]">
+    <footer className="flex items-center justify-center gap-[79px] px-2 py-[60px] relative w-full bg-[#00548c] rounded-[0px_0px_42px_42px]">
       {/* Left section - Logo and description */}
       <div className="flex flex-col w-[436px] items-start gap-[33px]">
         <div className="flex flex-col items-start justify-center gap-3 w-full">
           <Image
             className="w-[90px] h-[29.23px]"
             alt="App Logo"
-            src="/frame-1597882000.svg"
+            src="/images/logo.png"
             width={90}
             height={29}
           />
@@ -64,12 +74,7 @@ export const Footer = (): JSX.Element => {
               key={`social-icon-${index}`}
               className={`absolute ${icon.width} ${icon.height} ${icon.top} ${icon.left}`}
             >
-              <Image
-                src={icon.url}
-                alt={`Social icon ${index + 1}`}
-                fill
-                className="object-contain"
-              />
+              {icon.url}
             </div>
           ))}
         </div>
@@ -78,21 +83,7 @@ export const Footer = (): JSX.Element => {
         <div className="flex items-center gap-2 w-full">
           <div className="relative w-[23px] h-6">
             <div className="absolute w-[17px] h-5 top-0.5 left-[3px]">
-              <Image
-                className="absolute w-[17px] h-1.5 top-3.5 left-0"
-                alt="Location pin base"
-                src="/ellipse-40.svg"
-                width={17}
-                height={6}
-              />
-              <Image
-                className="absolute w-[15px] h-[18px] top-0 left-px"
-                alt="Location pin"
-                src="/ellipse-41.svg"
-                width={15}
-                height={18}
-              />
-              <div className="absolute w-2 h-2 top-1 left-[5px] rounded-[3.83px/4px] border border-solid border-white" />
+              <MapPinned className="size-5 text-white " />
             </div>
           </div>
           <p className="[font-family:'Poppins',Helvetica] font-normal text-white text-[13.3px] text-right leading-[19.6px] whitespace-nowrap">
@@ -125,13 +116,7 @@ export const Footer = (): JSX.Element => {
             <div className="flex flex-col items-start gap-3 w-full">
               {/* Phone */}
               <div className="flex items-center gap-2">
-                <Image
-                  className="w-6 h-6"
-                  alt="Phone icon"
-                  src="/phone-light.svg"
-                  width={24}
-                  height={24}
-                />
+                <PhoneCall className="size-5 text-white" />
                 <span className="[font-family:'Poppins',Helvetica] text-white text-[13.3px] text-right leading-[19.6px] whitespace-nowrap">
                   +1 (555) 123-4567
                 </span>
@@ -139,13 +124,7 @@ export const Footer = (): JSX.Element => {
 
               {/* Email */}
               <div className="flex items-center gap-2">
-                <Image
-                  className="w-6 h-6"
-                  alt="Email icon"
-                  src="/message-light.svg"
-                  width={24}
-                  height={24}
-                />
+                <Mail className="size-5 text-white" />
                 <span className="[font-family:'Poppins',Helvetica] font-normal text-white text-[13.3px] text-right leading-[19.6px] whitespace-nowrap">
                   support@[yourappname].com
                 </span>
@@ -160,15 +139,15 @@ export const Footer = (): JSX.Element => {
               <div className="flex items-center gap-[19.86px]">
                 <Image
                   className="w-[34.01px] h-[34.07px]"
-                  alt="Google Play Store"
-                  src="/play-store.svg"
+                  alt="Apple App Store"
+                  src="/images/play-store.png"
                   width={34}
                   height={34}
                 />
                 <Image
                   className="w-[34.01px] h-[34.07px]"
                   alt="Apple App Store"
-                  src="/apple.svg"
+                  src="/images/apple.png"
                   width={34}
                   height={34}
                 />
@@ -179,7 +158,7 @@ export const Footer = (): JSX.Element => {
 
         {/* Copyright */}
         <p className="[font-family:'Poppins',Helvetica] font-normal text-[#f0f0f0] text-[13.3px] text-right leading-[19.6px] whitespace-nowrap">
-          © 2023, All Rights Reserved
+          &copy; 2023, All Rights Reserved
         </p>
       </div>
     </footer>

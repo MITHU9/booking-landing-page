@@ -1,3 +1,4 @@
+import { BusFront, IceCreamBowl, Store, TreePalm } from "lucide-react";
 import Image from "next/image";
 import { JSX } from "react";
 
@@ -5,7 +6,7 @@ const About = (): JSX.Element => {
   const nearbyPlaces = [
     {
       category: "Restaurants & cafes",
-      icon: "/dish-01.svg",
+      icon: <IceCreamBowl className="size-5" />,
       places: [
         { name: "Blue Cafe", distance: "1.4 km" },
         { name: "Blue Cafe", distance: "1.4 km" },
@@ -14,7 +15,7 @@ const About = (): JSX.Element => {
     },
     {
       category: "Shops & Markets",
-      icon: "/shop-light.svg",
+      icon: <Store className="size-5" />,
       places: [
         { name: "Central Mall", distance: "1.4 km" },
         { name: "Central Mall", distance: "1.4 km" },
@@ -23,7 +24,7 @@ const About = (): JSX.Element => {
     },
     {
       category: "Beaches",
-      icon: "/beach.svg",
+      icon: <TreePalm className="size-5" />,
       places: [
         { name: "Les Dunes Beach", distance: "1.4 km" },
         { name: "Les Dunes Beach", distance: "1.4 km" },
@@ -32,7 +33,7 @@ const About = (): JSX.Element => {
     },
     {
       category: "Public transport",
-      icon: "/bus-01.svg",
+      icon: <BusFront className="size-5" />,
       places: [
         { name: "Train - Riverdale Central Station", distance: "1.4 km" },
         { name: "Metro - Cityline Metro Hub", distance: "1.4 km" },
@@ -71,13 +72,7 @@ const About = (): JSX.Element => {
                     className="flex flex-col w-[220px] items-start gap-3"
                   >
                     <div className="flex items-center gap-3 w-full">
-                      <Image
-                        className="w-[19px] h-[19px]"
-                        alt={category.category}
-                        src={category.icon}
-                        width={19}
-                        height={19}
-                      />
+                      {category.icon}
                       <span
                         className={`font-normal text-[#252525] ${
                           index === 1 ? "text-sm" : "text-base"
@@ -111,13 +106,7 @@ const About = (): JSX.Element => {
                     className="flex flex-col w-[220px] items-start gap-3"
                   >
                     <div className="flex items-center gap-3 w-full">
-                      <Image
-                        className="w-6 h-6"
-                        alt={category.category}
-                        src={category.icon}
-                        width={24}
-                        height={24}
-                      />
+                      {category.icon}
                       <span className="font-normal text-[#252525] text-base font-['DM_Sans',Helvetica]">
                         {category.category}
                       </span>
