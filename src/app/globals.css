@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
 @layer components {
   .all-\[unset\] {
     all: unset;

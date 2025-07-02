@@ -24,7 +24,7 @@ const propertyFeatures = [
 ];
 
 const PropertyDetails = (): JSX.Element => (
-  <div className="flex flex-col md:flex-row items-start gap-6 lg:gap-[105px] w-full max-w-7xl px-4">
+  <div className="flex flex-col md:flex-row items-start gap-6 lg:gap-[105px] w-full max-w-7xl px-3">
     {/* Left content */}
     <div className="flex flex-col w-full lg:w-[646.1px] items-start gap-6 lg:gap-[31px]">
       <Tabs defaultValue="overview" className="w-full">
@@ -63,7 +63,7 @@ const PropertyDetails = (): JSX.Element => (
       {/* Property Info */}
       <div className="flex flex-col items-start gap-5 w-full">
         {/* Property Type & Size */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 w-full">
+        <div className="flex flex-row items-start sm:items-center gap-5 w-full">
           {/* Property Type */}
           <div className="flex flex-col w-full sm:w-[117px] items-start gap-2">
             <h3 className="text-base font-semibold text-[#252525]">
@@ -95,7 +95,6 @@ const PropertyDetails = (): JSX.Element => (
         <div className="flex flex-col items-start gap-4 w-full">
           <h3 className="text-base font-semibold text-[#252525]">Features</h3>
 
-          {/* Large & Medium Devices: Two rows layout, Mobile: stacked */}
           <div className="w-full">
             <div className="hidden md:flex items-center gap-[14.4px] mb-3">
               {propertyFeatures.slice(0, 3).map((feature, index) => (
@@ -129,7 +128,7 @@ const PropertyDetails = (): JSX.Element => (
             </div>
 
             {/* Mobile */}
-            <div className="flex flex-col gap-3 md:hidden">
+            <div className="flex flex-wrap gap-3 md:hidden">
               {propertyFeatures.map((feature, index) => (
                 <div
                   key={`feature-mobile-${index}`}

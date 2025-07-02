@@ -1,5 +1,5 @@
 import React, { JSX } from "react";
-import Link from "next/link"; // Import Next.js Link
+import Link from "next/link";
 import { Card, CardContent } from "../ui/card";
 
 interface ContentItemBase {
@@ -104,7 +104,7 @@ const Policies = (): JSX.Element => {
   ];
 
   return (
-    <div className="flex flex-col items-start gap-3 w-full px-4 sm:px-6 lg:px-0">
+    <div className="flex flex-col items-start gap-3 w-full px-2 sm:px-6 lg:px-0">
       <h2 className="font-bold text-[#252525] text-[20.8px] font-['DM_Sans',Helvetica]">
         Policies
       </h2>
@@ -136,15 +136,13 @@ const Policies = (): JSX.Element => {
                         <span className="text-[#626262] leading-[22px]">
                           {item.regular}
                           {isContentItemWithLink(item) && (
-                            <Link href={item.link.url} passHref legacyBehavior>
-                              <a
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="underline"
-                                style={{ color: "inherit" }}
-                              >
-                                {item.link.text}
-                              </a>
+                            <Link
+                              href={item.link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline"
+                            >
+                              {item.link.text}
                             </Link>
                           )}
                           {isContentItemWithLink(item) && item.afterLink}

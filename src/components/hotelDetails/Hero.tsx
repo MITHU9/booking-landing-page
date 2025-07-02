@@ -17,9 +17,9 @@ const HotelHeader = (): JSX.Element => (
     </div>
 
     {/* Right Actions */}
-    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
+    <div className="flex flex-row items-center gap-4 sm:gap-5">
       <div className="flex h-[60px] sm:h-[70px] items-center gap-[12px] p-[12px] sm:p-[15px] bg-[#007dd01a] rounded-full">
-        <BookmarkIcon className="w-6 h-6 sm:w-10 sm:h-[43.64px]" />
+        <BookmarkIcon className="text-[#007ccf] w-6 h-6 sm:w-10 sm:h-[43.64px]" />
       </div>
 
       <div className="flex w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] items-center justify-center bg-[#007dd01a] rounded-full">

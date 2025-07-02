@@ -27,7 +27,7 @@ export const PropertyDescription = (): JSX.Element => {
           Availability
         </h2>
 
-        <div className="flex flex-col items-start gap-3 w-full">
+        <div className="flex flex-col items-center sm:items-start gap-3 w-full">
           {/* Search form */}
           <SearchForm />
 

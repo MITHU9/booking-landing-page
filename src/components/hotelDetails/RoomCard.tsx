@@ -1,9 +1,18 @@
+"use client";
+
 import { JSX } from "react";
 import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import { Separator } from "@radix-ui/react-separator";
 import { Button } from "../ui/button";
 import { Bath, BedSingle, InfoIcon, Maximize2, StarIcon } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper/modules";
+import { motion } from "framer-motion";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const RoomCard = (): JSX.Element => {
   const similarProperties = Array(8).fill({
@@ -17,25 +26,37 @@ const RoomCard = (): JSX.Element => {
   });
 
   return (
-    <>
-      <div className="flex flex-col items-start gap-4 w-full">
-        <h2 className="font-bold text-[#252525] text-[20.8px] font-['DM_Sans',Helvetica]">
-          You may also like
-        </h2>
-        <div className="flex flex-col items-start gap-10 w-full">
-          {[0, 1].map((rowIndex) => (
-            <div
-              key={`row-${rowIndex}`}
-              className="flex flex-col items-start gap-5 w-full"
-            >
-              <div className="flex items-start gap-[30px] w-full overflow-hidden">
-                {similarProperties
-                  .slice(rowIndex * 4, (rowIndex + 1) * 4)
-                  .map((property, index) => (
-                    <Card
-                      key={`property-${rowIndex}-${index}`}
-                      className="w-[326px] bg-transparent border-none shadow-none"
-                    >
+    <div className="flex flex-col items-start gap-4 w-full">
+      <h2 className="font-bold text-[#252525] text-[20.8px] font-['DM_Sans',Helvetica]">
+        You may also like
+      </h2>
+
+      <div className="flex flex-col gap-10 w-full">
+        {[0, 1].map((rowIndex) => (
+          <Swiper
+            key={`row-${rowIndex}`}
+            modules={[Pagination, Navigation]}
+            spaceBetween={30}
+            slidesPerView={1.1}
+            navigation
+            pagination={{ clickable: true }}
+            breakpoints={{
+              768: { slidesPerView: 2.5 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 3.5 },
+            }}
+            className="w-full"
+          >
+            {similarProperties
+              .slice(rowIndex * 4, (rowIndex + 1) * 4)
+              .map((property, index) => (
+                <SwiperSlide key={`property-${rowIndex}-${index}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    <Card className="w-[326px] bg-transparent border-none shadow-none">
                       <CardContent className="flex flex-col items-start justify-center gap-3 p-0">
                         <div className="flex flex-col items-start">
                           <Image
@@ -123,13 +144,14 @@ const RoomCard = (): JSX.Element => {
                         </div>
                       </CardContent>
                     </Card>
-                  ))}
-              </div>
-            </div>
-          ))}
-        </div>
+                  </motion.div>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
+
 export default RoomCard;

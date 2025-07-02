@@ -35,10 +35,11 @@ export const Footer = (): JSX.Element => {
             height={29}
           />
           <p className="text-white text-sm leading-[17px]">
-            [App Name] makes booking your next stay easy, affordable, and
-            stress-free. With thousands of hotels worldwide, exclusive deals,
-            and secure payment options, we&apos;re here to help you find the
-            perfect place to stay, every time.
+            <span className="font-semibold text-lg">El Aurassi Hotel</span>{" "}
+            makes booking your next stay easy, affordable, and stress-free. With
+            thousands of hotels worldwide, exclusive deals, and secure payment
+            options, we&apos;re here to help you find the perfect place to stay,
+            every time.
           </p>
         </div>
 
@@ -61,7 +62,7 @@ export const Footer = (): JSX.Element => {
       {/* Divider */}
       <Separator
         orientation="horizontal"
-        className="md:hidden h-px w-full my-6 bg-white/30"
+        className="md:hidden h-px w-full md:my-6 bg-white/30"
       />
       <Separator
         orientation="vertical"
@@ -77,7 +78,7 @@ export const Footer = (): JSX.Element => {
               <a
                 key={`nav-link-${index}`}
                 href="#"
-                className="text-white text-base hover:underline"
+                className="text-white text-base hover:underline font-semibold"
               >
                 {link}
               </a>
@@ -95,7 +96,7 @@ export const Footer = (): JSX.Element => {
               <div className="flex items-center gap-2">
                 <Mail className="size-5 text-white" />
                 <span className="text-sm text-white">
-                  support@[yourappname].com
+                  support@elaurassihotel.com
                 </span>
               </div>
             </div>
