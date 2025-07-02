@@ -1,6 +1,27 @@
 import React, { JSX } from "react";
+import Link from "next/link"; // Import Next.js Link
 import { Card, CardContent } from "../ui/card";
-import Image from "next/image";
+
+interface ContentItemBase {
+  bold: string;
+  regular: string;
+}
+
+interface ContentItemWithLink extends ContentItemBase {
+  link: {
+    text: string;
+    url: string;
+  };
+  afterLink: string;
+}
+
+type ContentItem = ContentItemBase | ContentItemWithLink;
+
+const isContentItemWithLink = (
+  item: ContentItem
+): item is ContentItemWithLink => {
+  return (item as ContentItemWithLink).link !== undefined;
+};
 
 const Policies = (): JSX.Element => {
   const policies = [
@@ -30,7 +51,12 @@ const Policies = (): JSX.Element => {
         {
           bold: "",
           regular:
-            "Cancellation and prepayment policies vary according to accommodation type. Please check what conditions may apply to each option when making your selection.",
+            "Cancellation and prepayment policies vary according to accommodation type. Please check what ",
+          link: {
+            text: "conditions",
+            url: "https://www.booking.com/hotel/bd/bluebird-ltd.en-gb.html",
+          },
+          afterLink: " may apply to each option when making your selection.",
         },
       ],
     },
@@ -78,61 +104,67 @@ const Policies = (): JSX.Element => {
   ];
 
   return (
-    <>
-      <div className="flex flex-col items-start gap-3 w-full">
-        <h2 className="font-bold text-[#252525] text-[20.8px] font-['DM_Sans',Helvetica]">
-          Policies
-        </h2>
-        <Card className="w-full rounded-xl border-[#0000001a]">
-          <CardContent className="p-5">
-            {policies.map((policy, index) => (
-              <React.Fragment key={`policy-${index}`}>
-                <div className="flex items-center justify-between h-[86px] w-full">
-                  <h3 className="font-normal text-[#252525] text-2xl leading-[33.1px] whitespace-nowrap font-['DM_Sans',Helvetica]">
-                    {policy.title}
-                  </h3>
-                  <div
-                    className={`${
-                      policy.title === "Children and beds"
-                        ? "w-[603px]"
-                        : "w-[603px] h-[66px]"
-                    } font-normal text-base font-['DM_Sans',Helvetica]`}
-                  >
-                    {policy.content.map((item, itemIndex) => (
-                      <React.Fragment
-                        key={`policy-content-${index}-${itemIndex}`}
-                      >
-                        {item.bold && (
-                          <span className="font-semibold text-[#252525] leading-[22.1px]">
-                            {item.bold}
-                            <br />
-                          </span>
-                        )}
-                        {item.regular && (
-                          <span className="text-[#626262] leading-[0.1px]">
-                            {item.regular}
-                            <br />
-                          </span>
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </div>
+    <div className="flex flex-col items-start gap-3 w-full px-4 sm:px-6 lg:px-0">
+      <h2 className="font-bold text-[#252525] text-[20.8px] font-['DM_Sans',Helvetica]">
+        Policies
+      </h2>
+      <Card className="w-full rounded-xl border-[#0000001a] max-w-7xl mx-auto">
+        <CardContent className="p-5">
+          {policies.map((policy, index) => (
+            <React.Fragment key={`policy-${index}`}>
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between w-full py-5 gap-2">
+                <h3 className="font-normal text-[#252525] text-xl lg:text-2xl leading-[1.55] whitespace-normal lg:whitespace-nowrap font-['DM_Sans',Helvetica]">
+                  {policy.title}
+                </h3>
+                <div
+                  className={`font-normal text-base font-['DM_Sans',Helvetica] w-full lg:w-[603px] ${
+                    policy.title !== "Children and beds" ? "lg:h-[66px]" : ""
+                  }`}
+                  style={{ overflowWrap: "break-word" }}
+                >
+                  {policy.content.map((item, itemIndex) => (
+                    <React.Fragment
+                      key={`policy-content-${index}-${itemIndex}`}
+                    >
+                      {item.bold && (
+                        <span className="font-semibold text-[#252525] leading-[22.1px]">
+                          {item.bold}
+                          <br />
+                        </span>
+                      )}
+                      {item.regular && (
+                        <span className="text-[#626262] leading-[22px]">
+                          {item.regular}
+                          {isContentItemWithLink(item) && (
+                            <Link href={item.link.url} passHref legacyBehavior>
+                              <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline"
+                                style={{ color: "inherit" }}
+                              >
+                                {item.link.text}
+                              </a>
+                            </Link>
+                          )}
+                          {isContentItemWithLink(item) && item.afterLink}
+                          <br />
+                        </span>
+                      )}
+                    </React.Fragment>
+                  ))}
                 </div>
-                {index < policies.length - 1 && (
-                  <Image
-                    className="w-full h-px object-cover"
-                    alt="Separator"
-                    src="/line-129.svg"
-                    width={1000}
-                    height={1}
-                  />
-                )}
-              </React.Fragment>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-    </>
+              </div>
+
+              {index < policies.length - 1 && (
+                <div className="w-full h-px bg-[#D9D9D9]" />
+              )}
+            </React.Fragment>
+          ))}
+        </CardContent>
+      </Card>
+    </div>
   );
 };
+
 export default Policies;

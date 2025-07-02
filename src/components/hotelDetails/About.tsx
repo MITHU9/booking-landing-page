@@ -62,86 +62,94 @@ const About = (): JSX.Element => {
         <h2 className="font-bold text-[#252525] text-xl font-['DM_Sans',Helvetica]">
           Explore the Area
         </h2>
-        <div className="flex items-start justify-between w-full">
-          <div className="flex flex-col w-[496px] items-start justify-center gap-6">
-            <div className="flex flex-col items-start justify-center gap-5 w-full">
-              <div className="flex items-center justify-between w-full">
-                {nearbyPlaces.slice(0, 2).map((category, index) => (
-                  <div
-                    key={`category-${index}`}
-                    className="flex flex-col w-[220px] items-start gap-3"
-                  >
-                    <div className="flex items-center gap-3 w-full">
-                      {category.icon}
-                      <span
-                        className={`font-normal text-[#252525] ${
-                          index === 1 ? "text-sm" : "text-base"
-                        } font-['DM_Sans',Helvetica]`}
-                      >
-                        {category.category}
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-start gap-2 w-full">
-                      {category.places.map((place, placeIndex) => (
-                        <div
-                          key={`place-${index}-${placeIndex}`}
-                          className="flex items-center justify-between w-full"
+
+        {/* Container that switches from row on large screens to column on smaller */}
+        <div className="flex flex-col lg:flex-row items-start justify-between w-full gap-6">
+          {/* Left: Categories */}
+          <div className="flex flex-col lg:flex-row w-full lg:w-auto gap-6">
+            {/* First two categories */}
+            <div className="flex flex-col gap-6 w-full lg:w-[496px]">
+              <div className="flex flex-col gap-5 w-full">
+                <div className="flex flex-col lg:flex-row justify-between w-full gap-6">
+                  {nearbyPlaces.slice(0, 2).map((category, index) => (
+                    <div
+                      key={`category-${index}`}
+                      className="flex flex-col w-full lg:w-[220px] items-start gap-3"
+                    >
+                      <div className="flex items-center gap-3 w-full">
+                        {category.icon}
+                        <span
+                          className={`font-normal text-[#252525] ${
+                            index === 1 ? "text-sm" : "text-base"
+                          } font-['DM_Sans',Helvetica]`}
                         >
-                          <span className="font-normal text-[#757575] text-xs font-['DM_Sans',Helvetica]">
-                            {place.name}
-                          </span>
-                          <span className="font-normal text-[#757575] text-xs font-['DM_Sans',Helvetica]">
-                            {place.distance}
-                          </span>
-                        </div>
-                      ))}
+                          {category.category}
+                        </span>
+                      </div>
+                      <div className="flex flex-col items-start gap-2 w-full">
+                        {category.places.map((place, placeIndex) => (
+                          <div
+                            key={`place-${index}-${placeIndex}`}
+                            className="flex items-center justify-between w-full"
+                          >
+                            <span className="font-normal text-[#757575] text-xs font-['DM_Sans',Helvetica]">
+                              {place.name}
+                            </span>
+                            <span className="font-normal text-[#757575] text-xs font-['DM_Sans',Helvetica]">
+                              {place.distance}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-              <div className="flex items-center justify-between w-full">
-                {nearbyPlaces.slice(2).map((category, index) => (
-                  <div
-                    key={`category-${index + 2}`}
-                    className="flex flex-col w-[220px] items-start gap-3"
-                  >
-                    <div className="flex items-center gap-3 w-full">
-                      {category.icon}
-                      <span className="font-normal text-[#252525] text-base font-['DM_Sans',Helvetica]">
-                        {category.category}
-                      </span>
+                  ))}
+                </div>
+                {/* Next two categories */}
+                <div className="flex flex-col lg:flex-row justify-between w-full gap-6">
+                  {nearbyPlaces.slice(2).map((category, index) => (
+                    <div
+                      key={`category-${index + 2}`}
+                      className="flex flex-col w-full lg:w-[220px] items-start gap-3"
+                    >
+                      <div className="flex items-center gap-3 w-full">
+                        {category.icon}
+                        <span className="font-normal text-[#252525] text-base font-['DM_Sans',Helvetica]">
+                          {category.category}
+                        </span>
+                      </div>
+                      <div className="flex flex-col items-start gap-2 w-full">
+                        {category.places.map((place, placeIndex) => (
+                          <div
+                            key={`place-${index + 2}-${placeIndex}`}
+                            className="flex items-center justify-between w-full"
+                          >
+                            <span className="font-normal text-[#757575] text-xs font-['DM_Sans',Helvetica]">
+                              {place.name}
+                            </span>
+                            <span className="font-normal text-[#757575] text-xs font-['DM_Sans',Helvetica]">
+                              {place.distance}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="flex flex-col items-start gap-2 w-full">
-                      {category.places.map((place, placeIndex) => (
-                        <div
-                          key={`place-${index + 2}-${placeIndex}`}
-                          className="flex items-center justify-between w-full"
-                        >
-                          <span className="font-normal text-[#757575] text-xs font-['DM_Sans',Helvetica]">
-                            {place.name}
-                          </span>
-                          <span className="font-normal text-[#757575] text-xs font-['DM_Sans',Helvetica]">
-                            {place.distance}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Map section */}
-          <div className="flex flex-col w-[554.5px] items-start">
+          {/* Right: Map */}
+          <div className="flex flex-col w-full lg:w-[554.5px] items-start">
             <Image
               className="w-full h-[204.78px] object-cover"
               alt="Map of Bab el Oued, Algiers"
               src="/images/map.png"
               width={555}
               height={205}
+              priority
             />
-            <div className="flex flex-col items-start w-full bg-white rounded-[0px_0px_12.11px_12.11px] border-[1.26px] border-[#ededed] shadow-[0px_2.52px_2.52px_#bfbfbf40]">
+            <div className="flex flex-col items-start w-full bg-white rounded-b-[12.11px] border border-[#ededed] shadow-[0px_2.52px_2.52px_#bfbfbf40]">
               <div className="flex h-[67.59px] items-center justify-center p-[10.09px] w-full">
                 <span className="font-normal text-[#007dd0] text-[17.6px] font-['DM_Sans',Helvetica]">
                   Explore the Area
