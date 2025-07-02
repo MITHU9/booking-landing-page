@@ -44,7 +44,7 @@ const About = (): JSX.Element => {
 
   return (
     <>
-      <div className="flex flex-col items-start justify-center gap-4 w-full">
+      <div className="flex flex-col items-start justify-center gap-4 w-full ">
         <h2 className="font-bold text-[#252525] text-xl font-['DM_Sans',Helvetica]">
           About this property
         </h2>
@@ -58,7 +58,7 @@ const About = (): JSX.Element => {
       </div>
 
       {/* Explore the area section */}
-      <div className="flex flex-col items-start gap-4 w-full">
+      <div className="flex flex-col items-start gap-4 w-full px-2">
         <h2 className="font-bold text-[#252525] text-xl font-['DM_Sans',Helvetica]">
           Explore the Area
         </h2>
